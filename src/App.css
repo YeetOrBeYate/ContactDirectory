@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+a{
+  text-decoration: none;
+}
+
+a:visited{
+  color:white
+}
+
 .MuiAppBar-root{
   text-align: left;
 }
@@ -12,5 +20,5 @@
 }
 
 .MuiContainer-root{
-  border:.1px solid red
+  /* border:.1px solid red */
 }
