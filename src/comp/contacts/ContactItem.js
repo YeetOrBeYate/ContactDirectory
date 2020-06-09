@@ -7,29 +7,38 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
-import { lightGreen, purple } from '@material-ui/core/colors';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { orange, red } from '@material-ui/core/colors';
 
 const ContactItem = ({contact}) => {
 
     const useStyles = makeStyles((theme)=>({
         root:{
-            minWidth:340
+            minWidth:340,
+            marginTop:'2%',
+            marginBottom:'2%'
         },
         titlehold:{
             display:'flex',
             justifyContent:'space-between'
         },
         body:{
-            textAlign:'left',
+            textAlign:'left'
         },
         edit:{
-            color:theme.palette.getContrastText(lightGreen[700]),
-            backgroundColor:lightGreen[700],
+            color:theme.palette.getContrastText(orange[600]),
+            backgroundColor:orange[600],
             '&:hover':{
-                backgroundColor:lightGreen[900]
+                backgroundColor:orange[800]
             }
         },
-
+        delete:{
+            color:theme.palette.getContrastText(red[600]),
+            backgroundColor:red[600],
+            '&:hover':{
+                backgroundColor:red[800]
+            }
+        }
     }))
 
     const classes = useStyles()
@@ -45,15 +54,15 @@ const ContactItem = ({contact}) => {
                     </Typography>
                     <Chip label={type}/>
                 </div>
-                <Typography className={classes.body} color="info">
+                <Typography className={classes.body}>
                     {email}
                 </Typography>
-                <Typography className={classes.body} color="secondary">
+                <Typography className={classes.body}>
                     {phone}
                 </Typography>
                 <CardActions>
-                    <Button variant="contained" className={classes.edit}>Edit</Button>
-                    <Button variant="contained" color="secondary">Delete</Button>
+                    <Button variant="contained" className={classes.edit} startIcon={<DeleteIcon/>}>Edit</Button>
+                    <Button variant="contained" className={classes.delete}>Delete</Button>
                 </CardActions>
 
             </CardContent>
