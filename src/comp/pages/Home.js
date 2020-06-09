@@ -1,11 +1,10 @@
 import React from 'react'
 import Contacts from "../contacts/Contacts"
+import ContactForm from "../contacts/ContactForm"
 const Home = () => {
     return (
         <div className="homeFlex">
-            <div style={{backgroundColor:'blue'}}>
-                Form
-            </div>
+            <ContactForm/>
             <Contacts/>
         </div>
     )

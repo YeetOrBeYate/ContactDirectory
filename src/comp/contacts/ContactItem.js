@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles';
-import { palette } from '@material-ui/system';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -64,7 +64,7 @@ const ContactItem = ({contact}) => {
                     <Typography color='primary' variant='h5'>
                         {name}
                     </Typography>
-                    <Chip label={type}/>
+                    <Chip label={type.charAt(0).toUpperCase() + type.slice(1)}/>
                 </div>
                 <Typography className={classes.body}>
                     {email}
@@ -76,11 +76,11 @@ const ContactItem = ({contact}) => {
                     <Button onClick={(e)=>editButton(e)} variant="contained" className={classes.edit} startIcon={<EditIcon/>}>Edit</Button>
                     <Button onClick={(e)=>deleteButton(e)} variant="contained" className={classes.delete} startIcon={<DeleteIcon/>}>Delete</Button>
                 </CardActions>
-
             </CardContent>
-            
         </Card>
     )
 }
-
+ContactItem.propTypes={
+    contact:PropTypes.object.isRequired
+}
 export default ContactItem
