@@ -24,7 +24,6 @@ export const getAll =()=>{
         return axios.get(`http://localhost:4000/contact/5ed81c49061c6c5509fd3da5`, config)
 
             .then(res=>{
-                console.log(res.data.contacts)
                 dispatch(getAllSuccess(res.data.contacts))
             })
 

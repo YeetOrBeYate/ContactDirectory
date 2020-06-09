@@ -2,6 +2,8 @@ import React from 'react'
 import {useDispatch, useSelector}from 'react-redux'
 import {getAll} from "../../Actions/ContactActions"
 
+import ContactItem from "./ContactItem"
+
 
 const Contacts = () => {
 
@@ -24,9 +26,8 @@ const Contacts = () => {
     return (
         <div>
             Contacts loaded
-            {/* {console.log(Contact.contacts)} */}
             {Contact.contacts.map((person, index)=>(
-                <h1 key={index}>{person.name}</h1>
+                <ContactItem key={index} contact={person}/>
             ))}
         </div>
     )

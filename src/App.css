@@ -19,6 +19,8 @@ a:visited{
   justify-content:space-between ;
 }
 
-.MuiContainer-root{
-  /* border:.1px solid red */
+.homeFlex{
+  border:.1px solid red;
+  display: flex;
+  justify-content: space-around;
 }
