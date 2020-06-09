@@ -45,6 +45,17 @@ const ContactItem = ({contact}) => {
     const classes = useStyles()
 
     const {_id,name,email,phone,type} = contact
+
+    const editButton = (e)=>{
+        e.preventDefault()
+        console.log(name)
+    }
+
+    const deleteButton = (e)=>{
+        e.preventDefault()
+        //You should never do this in prod btw, just laying out functions I know I'll have to make
+        console.log(_id)
+    }
     
     return (
         <Card className={classes.root} >
@@ -62,8 +73,8 @@ const ContactItem = ({contact}) => {
                     {phone}
                 </Typography>
                 <CardActions>
-                    <Button variant="contained" className={classes.edit} startIcon={<EditIcon/>}>Edit</Button>
-                    <Button variant="contained" className={classes.delete} startIcon={<DeleteIcon/>}>Delete</Button>
+                    <Button onClick={(e)=>editButton(e)} variant="contained" className={classes.edit} startIcon={<EditIcon/>}>Edit</Button>
+                    <Button onClick={(e)=>deleteButton(e)} variant="contained" className={classes.delete} startIcon={<DeleteIcon/>}>Delete</Button>
                 </CardActions>
 
             </CardContent>
