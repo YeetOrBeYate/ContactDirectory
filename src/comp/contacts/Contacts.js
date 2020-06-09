@@ -24,8 +24,7 @@ const Contacts = () => {
 
 
     return (
-        <div>
-            Contacts loaded
+        <div className="contactHold">
             {Contact.contacts.map((person, index)=>(
                 <ContactItem key={index} contact={person}/>
             ))}

@@ -12,12 +12,15 @@ const ContactForm = () => {
 
     const useStyles = makeStyles((theme)=>({
         formRoot:{
-            minWidth:"350px",
-            border:'.1px solid blue'
+            minWidth:"350px"
         },
         input:{
-            width:"100%",
-            margin:'4% 0'
+            width:"98%",
+            margin:'4% auto'
+        },
+        button:{
+            width:"98%",
+            margin:'1% auto'
         }
     }))
 
@@ -44,11 +47,11 @@ const ContactForm = () => {
     const classes = useStyles()
 
     return (
-        <div>
+        <div className="formHold">
             <Typography variant="h4" color="primary">
                 Add Contact
             </Typography>
-            <form className={classes.formRoot}>
+            <form >
                 <div>
                     <TextField className={classes.input} variant="outlined" label="Name" name="name" value={name} onChange={handleChange}/>
                 </div>
@@ -59,11 +62,11 @@ const ContactForm = () => {
                     <TextField className={classes.input} variant="outlined" label="Phone" name="phone" value={phone} onChange={handleChange}/>                
                 </div>
                 <FormLabel component="legend">Contact type</FormLabel>
-                <RadioGroup defaultValue={type} onChange={handleChange} name="type">
+                <RadioGroup className={classes.input} defaultValue={type} onChange={handleChange} name="type">
                     <FormControlLabel value="personal" control={<Radio/>} label="Personal"/>
                     <FormControlLabel value="professional" control={<Radio/>} label="Professional"/>                    
                 </RadioGroup>
-                <Button color="primary" onClick={(e)=>Submit(e)}>Submit</Button>
+                <Button className={classes.button} variant='contained' color="primary" onClick={(e)=>Submit(e)}>Submit</Button>
             </form>
         </div>
     )

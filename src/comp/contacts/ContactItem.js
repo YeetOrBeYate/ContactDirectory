@@ -14,11 +14,6 @@ import { teal, red, blueGrey } from '@material-ui/core/colors';
 const ContactItem = ({contact}) => {
 
     const useStyles = makeStyles((theme)=>({
-        root:{
-            minWidth:340,
-            marginTop:'2%',
-            marginBottom:'2%'
-        },
         titlehold:{
             display:'flex',
             justifyContent:'space-between'
@@ -58,7 +53,7 @@ const ContactItem = ({contact}) => {
     }
     
     return (
-        <Card className={classes.root} >
+        <Card className="contactHold" >
             <CardContent>
                 <div className={classes.titlehold}>
                     <Typography color='primary' variant='h5'>
