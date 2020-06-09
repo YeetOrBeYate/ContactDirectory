@@ -8,7 +8,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { orange, red } from '@material-ui/core/colors';
+import EditIcon from '@material-ui/icons/Edit';
+import { teal, red, blueGrey } from '@material-ui/core/colors';
 
 const ContactItem = ({contact}) => {
 
@@ -26,10 +27,10 @@ const ContactItem = ({contact}) => {
             textAlign:'left'
         },
         edit:{
-            color:theme.palette.getContrastText(orange[600]),
-            backgroundColor:orange[600],
+            color:theme.palette.getContrastText(blueGrey[600]),
+            backgroundColor:blueGrey[600],
             '&:hover':{
-                backgroundColor:orange[800]
+                backgroundColor:blueGrey[800]
             }
         },
         delete:{
@@ -61,8 +62,8 @@ const ContactItem = ({contact}) => {
                     {phone}
                 </Typography>
                 <CardActions>
-                    <Button variant="contained" className={classes.edit} startIcon={<DeleteIcon/>}>Edit</Button>
-                    <Button variant="contained" className={classes.delete}>Delete</Button>
+                    <Button variant="contained" className={classes.edit} startIcon={<EditIcon/>}>Edit</Button>
+                    <Button variant="contained" className={classes.delete} startIcon={<DeleteIcon/>}>Delete</Button>
                 </CardActions>
 
             </CardContent>
