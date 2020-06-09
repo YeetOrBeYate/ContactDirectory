@@ -1,6 +1,11 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import FormLabel from '@material-ui/core/FormLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const ContactForm = () => {
@@ -29,6 +34,13 @@ const ContactForm = () => {
         setContact({...contact, [e.target.name]:e.target.value})
     }
 
+    const Submit = (e)=>{
+        e.preventDefault()
+
+        console.log("contact=>",contact)
+
+    }
+
     const classes = useStyles()
 
     return (
@@ -46,6 +58,12 @@ const ContactForm = () => {
                 <div>
                     <TextField className={classes.input} variant="outlined" label="Phone" name="phone" value={phone} onChange={handleChange}/>                
                 </div>
+                <FormLabel component="legend">Contact type</FormLabel>
+                <RadioGroup defaultValue={type} onChange={handleChange} name="type">
+                    <FormControlLabel value="personal" control={<Radio/>} label="Personal"/>
+                    <FormControlLabel value="professional" control={<Radio/>} label="Professional"/>                    
+                </RadioGroup>
+                <Button color="primary" onClick={(e)=>Submit(e)}>Submit</Button>
             </form>
         </div>
     )
