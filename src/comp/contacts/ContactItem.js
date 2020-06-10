@@ -15,11 +15,12 @@ import EditIcon from '@material-ui/icons/Edit';
 import { teal, red, blueGrey } from '@material-ui/core/colors';
 
 import {deleteById} from "../../Actions/ContactActions"
+import {setEdit,stopEdit} from "../../Actions/EditActions"
 
 const ContactItem = ({contact}) => {
 
     const dispatch = useDispatch()
-
+    const Edit = useSelector(state=>state.Edit)
     const useStyles = makeStyles((theme)=>({
         titlehold:{
             display:'flex',
@@ -50,12 +51,11 @@ const ContactItem = ({contact}) => {
 
     const editButton = (e)=>{
         e.preventDefault()
-        console.log(name)
+        dispatch(setEdit(contact))
     }
 
     const deleteButton = (e)=>{
         e.preventDefault()
-        //You should never do this in prod btw, just laying out functions I know I'll have to make
         dispatch(deleteById(_id))
     }
     

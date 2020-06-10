@@ -1,4 +1,8 @@
 import React from 'react'
+import {useDispatch, useSelector}from 'react-redux'
+import {stopEdit} from "../../Actions/EditActions"
+
+
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -21,12 +25,23 @@ const ContactForm = () => {
         }
     }))
 
+    const dispatch = useDispatch()
+    const Edit = useSelector(state=>state.Edit)
+
     const [contact,setContact] = React.useState({
         name:'',
         email:'',
         phone:'',
         type:'personal'
     })
+
+    React.useEffect(()=>{
+
+        if(Edit.edit){
+            console.log(Edit.contact)
+        }
+
+    },[Edit.edit])
 
     const {name, email, phone, type} =contact
 
@@ -36,9 +51,12 @@ const ContactForm = () => {
 
     const Submit = (e)=>{
         e.preventDefault()
-
         console.log("contact=>",contact)
+    }
 
+    const Clear =(e)=>{
+        e.preventDefault()
+        dispatch(stopEdit())
     }
 
     const classes = useStyles()
@@ -64,6 +82,7 @@ const ContactForm = () => {
                     <FormControlLabel value="personal" control={<Radio/>} label="Personal"/>
                     <FormControlLabel value="professional" control={<Radio/>} label="Professional"/>                    
                 </RadioGroup>
+                <Button className={classes.button} variant="outlined" onClick={(e)=>Clear(e)}>Clear</Button>
                 <Button className={classes.button} variant='contained' color="primary" onClick={(e)=>Submit(e)}>Submit</Button>
             </form>
         </div>
