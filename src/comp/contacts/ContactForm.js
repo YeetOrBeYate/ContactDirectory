@@ -11,9 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 const ContactForm = () => {
 
     const useStyles = makeStyles((theme)=>({
-        formRoot:{
-            minWidth:"350px"
-        },
         input:{
             width:"98%",
             margin:'4% auto'
@@ -61,7 +58,7 @@ const ContactForm = () => {
                 <div>
                     <TextField className={classes.input} variant="outlined" label="Phone" name="phone" value={phone} onChange={handleChange}/>                
                 </div>
-                <FormLabel component="legend">Contact type</FormLabel>
+                <FormLabel  component="legend">Contact type</FormLabel>
                 <RadioGroup className={classes.input} defaultValue={type} onChange={handleChange} name="type">
                     <FormControlLabel value="personal" control={<Radio/>} label="Personal"/>
                     <FormControlLabel value="professional" control={<Radio/>} label="Professional"/>                    

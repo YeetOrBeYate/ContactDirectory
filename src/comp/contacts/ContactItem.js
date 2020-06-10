@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import {useDispatch, useSelector}from 'react-redux'
+
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -11,7 +14,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { teal, red, blueGrey } from '@material-ui/core/colors';
 
+import {deleteById} from "../../Actions/ContactActions"
+
 const ContactItem = ({contact}) => {
+
+    const dispatch = useDispatch()
 
     const useStyles = makeStyles((theme)=>({
         titlehold:{
@@ -49,7 +56,7 @@ const ContactItem = ({contact}) => {
     const deleteButton = (e)=>{
         e.preventDefault()
         //You should never do this in prod btw, just laying out functions I know I'll have to make
-        console.log(_id)
+        dispatch(deleteById(_id))
     }
     
     return (
