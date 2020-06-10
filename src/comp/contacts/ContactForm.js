@@ -43,6 +43,7 @@ const ContactForm = () => {
 
     const classes = useStyles()
 
+
     return (
         <div className="formHold">
             <Typography variant="h4" color="primary">
@@ -68,5 +69,6 @@ const ContactForm = () => {
         </div>
     )
 }
+
 
 export default ContactForm
