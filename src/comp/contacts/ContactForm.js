@@ -38,7 +38,8 @@ const ContactForm = () => {
     React.useEffect(()=>{
 
         if(Edit.edit){
-            console.log(Edit.contact)
+            let {name, email, phone} = Edit.contact
+            setContact({...contact, name:name,email:email, phone:phone})
         }
 
     },[Edit.edit])
@@ -56,7 +57,19 @@ const ContactForm = () => {
 
     const Clear =(e)=>{
         e.preventDefault()
+        setContact({...contact, name:'', email:'', phone:''})
         dispatch(stopEdit())
+    }
+
+    const disableClear = ()=>{
+
+        if(name || email || phone){
+            return false
+        }
+        
+        if(!Edit.edit){
+            return true
+        }
     }
 
     const classes = useStyles()
@@ -82,7 +95,7 @@ const ContactForm = () => {
                     <FormControlLabel value="personal" control={<Radio/>} label="Personal"/>
                     <FormControlLabel value="professional" control={<Radio/>} label="Professional"/>                    
                 </RadioGroup>
-                <Button className={classes.button} variant="outlined" onClick={(e)=>Clear(e)}>Clear</Button>
+                <Button className={classes.button} variant="outlined" onClick={(e)=>Clear(e)} disabled={disableClear()}>Clear</Button>
                 <Button className={classes.button} variant='contained' color="primary" onClick={(e)=>Submit(e)}>Submit</Button>
             </form>
         </div>

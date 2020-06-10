@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import {makeStyles } from '@material-ui/core/styles';
 
 const Navbar = ({title, icon}) => {
 

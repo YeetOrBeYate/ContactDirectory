@@ -75,8 +75,12 @@ const ContactItem = ({contact}) => {
                     {phone}
                 </Typography>
                 <CardActions>
-                    <Button onClick={(e)=>editButton(e)} variant="contained" className={classes.edit} startIcon={<EditIcon/>}>Edit</Button>
-                    <Button onClick={(e)=>deleteButton(e)} variant="contained" className={classes.delete} startIcon={<DeleteIcon/>}>Delete</Button>
+                    <Button 
+                    onClick={(e)=>editButton(e)} 
+                    variant="contained" className={classes.edit} startIcon={<EditIcon/>} disabled={Edit.edit}>Edit</Button>
+                    <Button 
+                    onClick={(e)=>deleteButton(e)} 
+                    variant="contained" className={classes.delete} startIcon={<DeleteIcon/>}>Delete</Button>
                 </CardActions>
             </CardContent>
         </Card>
