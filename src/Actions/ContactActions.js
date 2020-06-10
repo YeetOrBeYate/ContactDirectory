@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { createStore } from 'redux'
 
 const contactLoading = ()=>{
     return {type:'Contactloading'}
@@ -14,6 +15,10 @@ const contactDelete = (id)=>{
 
 const contactFailure = ()=>{
     return {type:'Contactfailure'}
+}
+
+const createContact=(data)=>{
+    return {type:'contactAdd', payload:data}
 }
 
 //again, hard-coded for now, I'll make an custom built axios I can import to all actions that need it
@@ -63,4 +68,22 @@ export const deleteById = (id)=>{
         })
     }
 
+}
+
+export const addContact=(object)=>{
+    return function(dispatch){
+        dispatch(contactLoading())
+
+        return axios.post(`http://localhost:4000/contact/5ed81c49061c6c5509fd3da5/`, object, config)
+
+        .then(res=>{
+            dispatch(createContact(object))
+        })
+
+        .catch(err=>{
+            console.log(err)
+            dispatch(contactFailure())
+        })
+
+    }
 }

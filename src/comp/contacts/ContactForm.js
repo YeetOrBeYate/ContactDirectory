@@ -1,6 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector}from 'react-redux'
 import {stopEdit} from "../../Actions/EditActions"
+import {addContact} from "../../Actions/ContactActions"
 
 
 import TextField from '@material-ui/core/TextField';
@@ -52,7 +53,7 @@ const ContactForm = () => {
 
     const Submit = (e)=>{
         e.preventDefault()
-        console.log("contact=>",contact)
+        dispatch(addContact(contact))
     }
 
     const Clear =(e)=>{
@@ -62,11 +63,11 @@ const ContactForm = () => {
     }
 
     const disableClear = ()=>{
-
+        //if theres anything in the form button is active
         if(name || email || phone){
             return false
         }
-        
+
         if(!Edit.edit){
             return true
         }
@@ -91,7 +92,7 @@ const ContactForm = () => {
                     <TextField className={classes.input} variant="outlined" label="Phone" name="phone" value={phone} onChange={handleChange}/>                
                 </div>
                 <FormLabel  component="legend">Contact type</FormLabel>
-                <RadioGroup className={classes.input} defaultValue={type} onChange={handleChange} name="type">
+                <RadioGroup className={classes.input} value={type} onChange={handleChange} name="type">
                     <FormControlLabel value="personal" control={<Radio/>} label="Personal"/>
                     <FormControlLabel value="professional" control={<Radio/>} label="Professional"/>                    
                 </RadioGroup>
