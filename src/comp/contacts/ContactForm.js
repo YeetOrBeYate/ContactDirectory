@@ -1,7 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector}from 'react-redux'
 import {stopEdit} from "../../Actions/EditActions"
-import {addContact} from "../../Actions/ContactActions"
+import {addContact,editContact} from "../../Actions/ContactActions"
 
 
 import TextField from '@material-ui/core/TextField';
@@ -53,7 +53,13 @@ const ContactForm = () => {
 
     const Submit = (e)=>{
         e.preventDefault()
-        dispatch(addContact(contact))
+        if(Edit.edit){
+            //do the update request
+            dispatch(editContact(Edit._id, contact))
+        }else{
+            //do the add request
+            dispatch(addContact(contact))
+        }
     }
 
     const Clear =(e)=>{

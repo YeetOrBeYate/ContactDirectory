@@ -21,6 +21,10 @@ const createContact=(data)=>{
     return {type:'contactAdd', payload:data}
 }
 
+const updateContact = (id, object)=>{
+    return {type:'contactEdit', payload:object, put:id}
+}
+
 //again, hard-coded for now, I'll make an custom built axios I can import to all actions that need it
 let config={
     headers:{
@@ -58,7 +62,7 @@ export const deleteById = (id)=>{
         return axios.delete(`http://localhost:4000/contact/5ed81c49061c6c5509fd3da5/${id}`, config)
 
         .then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             dispatch(contactDelete(id))
         })
 
@@ -77,7 +81,8 @@ export const addContact=(object)=>{
         return axios.post(`http://localhost:4000/contact/5ed81c49061c6c5509fd3da5/`, object, config)
 
         .then(res=>{
-            dispatch(createContact(object))
+            let newContact = res.data.contact
+            dispatch(createContact(newContact))
         })
 
         .catch(err=>{
@@ -86,4 +91,23 @@ export const addContact=(object)=>{
         })
 
     }
+}
+
+export const editContact = (id, object)=>{
+    return function(dispatch){
+
+        dispatch(contactLoading())
+
+        return axios.put(`http://localhost:4000/contact/5ed81c49061c6c5509fd3da5/${id}`, object, config)
+
+        .then(res=>{
+            let updatedContact = res.data.contact
+            dispatch(updateContact(id, updatedContact))
+        })
+
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+
 }
