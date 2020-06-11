@@ -5,32 +5,31 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {useForms} from "../Hooks"
 
+const Login = () => {
 
-const Register = () => {
-    const [user,setUser] = React.useState({
+    const[user,setUser] = React.useState({
         name:'',
         email:'',
-        password:'',
-        password2:''
-    });
+        password:''
+    })
 
-    const {name, email, password, password2} = user;
+    const {name,email,password} = user
 
     const handleChange = (e)=>{
         setUser({...user, [e.target.name]:e.target.value})
     }
 
-    const Register = (e)=>{
+    const Login = (e)=>{
         e.preventDefault()
-        setUser({...user, name:'', email:'', password:'', password2:''})
-        console.log(user)
+        setUser({...user, name:'', email:'', password:''})
+        console.log("login",user)
     }
 
     const classes = useForms()
     return (
         <div className="regFormHold">
             <Typography variant="h4" color="primary">
-                Register
+                Login
             </Typography>
             <form>
                 <div>
@@ -61,27 +60,15 @@ const Register = () => {
                     value={password}
                     onChange={handleChange}/>
                 </div>
-                <div>
-                    <TextField 
-                    className={classes.input}
-                    type="password"
-                    variant="outlined"
-                    label="Confirm Password"
-                    name="password2"
-                    value={password2}
-                    onChange={handleChange}/>
-                </div>
                 <Button 
                 color="primary"
                 className={classes.button}
                 variant="contained"
-                onClick={(e)=>Register(e)}>Register</Button>
+                onClick={(e)=>Login(e)}>Login</Button>
 
             </form>
-
-            
         </div>
     )
 }
 
-export default Register
+export default Login
