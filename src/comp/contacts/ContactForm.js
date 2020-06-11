@@ -11,20 +11,9 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import {useForms} from "../Hooks"
 
 const ContactForm = () => {
-
-    const useStyles = makeStyles((theme)=>({
-        input:{
-            width:"98%",
-            margin:'4% auto'
-        },
-        button:{
-            width:"98%",
-            margin:'1% auto'
-        }
-    }))
 
     const dispatch = useDispatch()
     const Edit = useSelector(state=>state.Edit)
@@ -56,9 +45,13 @@ const ContactForm = () => {
         if(Edit.edit){
             //do the update request
             dispatch(editContact(Edit._id, contact))
+            //calling the clear function so that the form is ready for another edit or post request
+            Clear(e)
         }else{
             //do the add request
             dispatch(addContact(contact))
+            //calling the clear function so that the form is ready for another edit or post request
+            Clear(e)
         }
     }
 
@@ -79,7 +72,7 @@ const ContactForm = () => {
         }
     }
 
-    const classes = useStyles()
+    const classes = useForms()
 
 
     return (

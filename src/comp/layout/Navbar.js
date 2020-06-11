@@ -61,6 +61,11 @@ const Navbar = ({title, icon}) => {
             </Link>
           </MenuItem>
           <MenuItem >
+            <Link to='/register'>
+                <Button color="primary">Register</Button>
+            </Link>
+          </MenuItem>
+          <MenuItem >
             <Link to='/about'>
                 <Button color="primary">About</Button>
             </Link>
@@ -78,6 +83,9 @@ const Navbar = ({title, icon}) => {
                 <div className={classes.sectionDesktop}>
                     <Link to='/'>
                         <Button color="inherit">Home</Button>
+                    </Link>
+                    <Link to='/register'>
+                        <Button color="inherit">Register</Button>
                     </Link>
                     <Link to='/about'>
                         <Button color="inherit">About</Button>
