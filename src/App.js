@@ -6,6 +6,7 @@ import About from "./comp/pages/About"
 import Register from "./comp/auth/Register"
 import Login from "./comp/auth/Login"
 import Container from '@material-ui/core/Container';
+import PrivateRoute from "./PrivateRoute"
 import './App.css';
 
 function App() {
@@ -16,8 +17,8 @@ function App() {
         <Switch>
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
-          <Route path='/about' component={About}/>
-          <Route path='/' component={Home}/>
+          <PrivateRoute path='/about' component={About}/>
+          <PrivateRoute path='/' component={Home}/>
         </Switch>
       </Container>
 </div>
