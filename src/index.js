@@ -17,6 +17,7 @@ import {LoginReducer} from "./Reducers/Login"
 import {ContactReducer} from "./Reducers/Contacts"
 import {EditReducer} from "./Reducers/Edit"
 
+
 const rootReducer = combineReducers({
   Register:RegisterReducer,
   Login:LoginReducer,

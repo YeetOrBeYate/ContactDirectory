@@ -8,7 +8,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 
-const Login = () => {
+const Login = (props) => {
+
 
     const loginState = useSelector(state=>state.Login)
     const dispatch = useDispatch()
@@ -25,10 +26,11 @@ const Login = () => {
         setUser({...user, [e.target.name]:e.target.value})
     }
 
-    const submitLogin = (e)=>{
+    const submitLogin = async (e)=>{
         e.preventDefault()
-        dispatch(loginUser(user))
+        await dispatch(loginUser(user))
         setUser({...user, email:'', password:''})
+        props.history.push('/')
     }
 
 
@@ -44,7 +46,7 @@ const Login = () => {
                 <Alert 
                 severity="error"
                 onClose={()=>dispatch(resetLogin())}
-                >This is an error alert — check it out!</Alert>
+                >Email and password do not match!</Alert>
 
                 :
                 <></>

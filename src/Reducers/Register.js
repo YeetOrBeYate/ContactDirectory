@@ -14,6 +14,8 @@ export const RegisterReducer = (state = initialState, action)=>{
             return {...state, loading:false, success:true, failure:false}
         case 'Registerfailure':
             return {...state, loading:false, success:false, failure:true}
+        case 'registerReset':
+            return {...state, loading:false, success:false, failure:false}
         default:
             return state
     }

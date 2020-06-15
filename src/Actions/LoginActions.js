@@ -18,8 +18,6 @@ export const loginUser = (userInfo)=>{
         return axios.post(`http://localhost:4000/auth`, userInfo)
     
         .then(res=>{
-            console.log(res.data)
-
             sessionStorage.setItem('token', res.data.token)
             sessionStorage.setItem('userId', res.data.userid)
 
@@ -46,7 +44,6 @@ export const resetLogin = ()=>{
 }
 
 export const logout = ()=>{
-    console.log('called')
     return function(dispatch){
         dispatch({
             type:'logout'
