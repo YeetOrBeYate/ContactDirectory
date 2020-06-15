@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from "react-router-dom"
+import {useDispatch, useSelector} from "react-redux"
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -11,6 +13,9 @@ import Menu from '@material-ui/core/Menu';
 import {makeStyles } from '@material-ui/core/styles';
 
 const Navbar = ({title, icon}) => {
+
+    const loginState = useSelector(state =>state.Login)
+    const dispatch = useDispatch()
 
     const [mobileAnchor, setMobileAnchor] = React.useState(null)
 
@@ -45,6 +50,12 @@ const Navbar = ({title, icon}) => {
         setMobileAnchor(null)
     }
 
+    const logOut = (e)=>{
+        e.preventDefault()
+
+        sessionStorage.clear()
+    }
+
     const renderMobileMenu = (
         <Menu
         anchorEl={mobileAnchor}
@@ -55,26 +66,41 @@ const Navbar = ({title, icon}) => {
         open={isMobileMenuOpen}
         onClose={mobileMenuClose}
       >
-          <MenuItem >
-            <Link to='/'>
-                <Button color="primary">Home</Button>
-            </Link>
-          </MenuItem>
-          <MenuItem >
-            <Link to='/login'>
-                <Button color="primary">Login</Button>
-            </Link>
-          </MenuItem>
-          <MenuItem >
-            <Link to='/register'>
-                <Button color="primary">Register</Button>
-            </Link>
-          </MenuItem>
-          <MenuItem >
-            <Link to='/about'>
-                <Button color="primary">About</Button>
-            </Link>
-          </MenuItem>
+
+          {
+              loginState.token?
+                <div>
+                    <MenuItem >
+                        <Link to='/'>
+                            <Button color="primary">Home</Button>
+                        </Link>
+                    </MenuItem>
+                    <MenuItem>
+                        <Link to='/about'>
+                            <Button color="primary">About</Button>
+                        </Link>
+                    </MenuItem>
+                    <MenuItem >
+                        <Link to='/login'>
+                            <Button onClick={(e)=>logOut(e)} color="primary">Logout</Button>
+                        </Link>
+                    </MenuItem>
+                </div>
+              :
+                <div>
+                    <MenuItem >
+                        <Link to='/login'>
+                            <Button color="primary">Login</Button>
+                        </Link>
+                    </MenuItem>
+                    <MenuItem >
+                        <Link to='/register'>
+                            <Button color="primary">Register</Button>
+                        </Link>
+                    </MenuItem>
+                </div>
+          }
+
         </Menu>
     )
 
