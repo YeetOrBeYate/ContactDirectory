@@ -39,6 +39,8 @@ export const LoginReducer = (state = initialState, action)=>{
             return {...state, loading:false, success:false, failure:true}
         case 'loginReset':
             return {...state, loading:false, success:false, failure:false}
+        case 'logout':
+            return {...state, loading:false, success:false, failure:false, userId:null, token: null}
         default:
             return state
     }

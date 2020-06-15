@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
+import {logout} from "../../Actions/LoginActions"
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -51,9 +52,9 @@ const Navbar = ({title, icon}) => {
     }
 
     const logOut = (e)=>{
-        e.preventDefault()
-
+        // e.preventDefault()
         sessionStorage.clear()
+        dispatch(logout())
     }
 
     const renderMobileMenu = (

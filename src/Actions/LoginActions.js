@@ -23,7 +23,7 @@ export const loginUser = (userInfo)=>{
             sessionStorage.setItem('token', res.data.token)
             sessionStorage.setItem('userId', res.data.userid)
 
-            dispatch(setLogin())
+            dispatch(setLogin(res.data.token, res.data.userid))
 
         })
 
@@ -41,6 +41,15 @@ export const resetLogin = ()=>{
     return function(dispatch){
         dispatch({
             type:'loginReset'
+        })
+    }
+}
+
+export const logout = ()=>{
+    console.log('called')
+    return function(dispatch){
+        dispatch({
+            type:'logout'
         })
     }
 }
