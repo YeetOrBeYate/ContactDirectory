@@ -113,18 +113,32 @@ const Navbar = ({title, icon}) => {
                     <i className={icon}/> {title}
                 </h1>
                 <div className={classes.sectionDesktop}>
-                    <Link to='/'>
-                        <Button color="inherit">Home</Button>
-                    </Link>
-                    <Link to='/login'>
-                        <Button color="inherit">Login</Button>
-                    </Link>
-                    <Link to='/register'>
-                        <Button color="inherit">Register</Button>
-                    </Link>
-                    <Link to='/about'>
-                        <Button color="inherit">About</Button>
-                    </Link>
+                    {
+                        loginState.token?
+                        <>
+                            <Link to='/'>
+                                <Button color="inherit">Home</Button>
+                            </Link>
+                            <Link to='/about'>
+                                <Button color="inherit">About</Button>
+                            </Link>
+                            <Link to='/login'>
+                                <Button onClick={(e)=>logOut(e)} color="inherit">Logout</Button>
+                            </Link>
+                        
+                        </>
+
+                        :
+
+                        <>
+                            <Link to='/login'>
+                                <Button color="inherit">Login</Button>
+                            </Link>
+                            <Link to='/register'>
+                                <Button color="inherit">Register</Button>
+                            </Link>                    
+                        </>
+                    }
                 </div>
                 <div className={classes.sectionMobile}>
                     <IconButton onClick={(e)=>mobileMenuOpen(e)}>
