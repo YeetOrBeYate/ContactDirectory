@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { createStore } from 'redux'
+
+import {AxiosWithAuth} from "./utils"
 
 const contactLoading = ()=>{
     return {type:'Contactloading'}
@@ -26,20 +27,20 @@ const updateContact = (id, object)=>{
 }
 
 //again, hard-coded for now, I'll make an custom built axios I can import to all actions that need it
-let config={
-    headers:{
-        authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVkODFjNDkwNjFjNmM1NTA5ZmQzZGE1In0sImlhdCI6MTU5MTY1NzU5MCwiZXhwIjoxNTkyMDE3NTkwfQ.84_jYbm5-DwCn5Q7Jln8Ej0wD0fV9O6EIHN9uHGdUEY'
-    }
-}
+// let config={
+//     headers:{
+//         authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVkODFjNDkwNjFjNmM1NTA5ZmQzZGE1In0sImlhdCI6MTU5MTY1NzU5MCwiZXhwIjoxNTkyMDE3NTkwfQ.84_jYbm5-DwCn5Q7Jln8Ej0wD0fV9O6EIHN9uHGdUEY'
+//     }
+// }
 
-export const getAll =()=>{
+export const getAll =(userId)=>{
 
     return function(dispatch){
 
         dispatch(contactLoading())
 
         //hard-coded for now, but after we get the login token into session storage I'll make it dynamic
-        return axios.get(`http://localhost:4000/contact/5ed81c49061c6c5509fd3da5`, config)
+        return AxiosWithAuth().get(`/contact/${userId}`)
 
             .then(res=>{
                 dispatch(getAllSuccess(res.data.contacts))
@@ -53,13 +54,13 @@ export const getAll =()=>{
     }
 }
 
-export const deleteById = (id)=>{
+export const deleteById = (userId,id)=>{
 
     return function(dispatch){
 
         dispatch(contactLoading())
         
-        return axios.delete(`http://localhost:4000/contact/5ed81c49061c6c5509fd3da5/${id}`, config)
+        return AxiosWithAuth().delete(`/contact/${userId}/${id}`)
 
         .then(res=>{
             // console.log(res.data)
@@ -74,11 +75,11 @@ export const deleteById = (id)=>{
 
 }
 
-export const addContact=(object)=>{
+export const addContact=(userId,object)=>{
     return function(dispatch){
         dispatch(contactLoading())
 
-        return axios.post(`http://localhost:4000/contact/5ed81c49061c6c5509fd3da5/`, object, config)
+        return AxiosWithAuth().post(`/contact/${userId}/`, object)
 
         .then(res=>{
             let newContact = res.data.contact
@@ -93,12 +94,12 @@ export const addContact=(object)=>{
     }
 }
 
-export const editContact = (id, object)=>{
+export const editContact = (userId,id, object)=>{
     return function(dispatch){
 
         dispatch(contactLoading())
 
-        return axios.put(`http://localhost:4000/contact/5ed81c49061c6c5509fd3da5/${id}`, object, config)
+        return AxiosWithAuth().put(`/contact/${userId}/${id}`, object)
 
         .then(res=>{
             let updatedContact = res.data.contact

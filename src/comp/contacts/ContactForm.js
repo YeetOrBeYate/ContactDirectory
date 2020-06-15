@@ -16,6 +16,7 @@ import {useForms} from "../Hooks"
 const ContactForm = () => {
 
     const dispatch = useDispatch()
+    const userId = useSelector(state=>state.Login.userId)
     const Edit = useSelector(state=>state.Edit)
 
     const [contact,setContact] = React.useState({
@@ -44,12 +45,12 @@ const ContactForm = () => {
         e.preventDefault()
         if(Edit.edit){
             //do the update request
-            dispatch(editContact(Edit._id, contact))
+            dispatch(editContact(userId,Edit._id, contact))
             //calling the clear function so that the form is ready for another edit or post request
             Clear(e)
         }else{
             //do the add request
-            dispatch(addContact(contact))
+            dispatch(addContact(userId,contact))
             //calling the clear function so that the form is ready for another edit or post request
             Clear(e)
         }

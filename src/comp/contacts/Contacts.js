@@ -8,10 +8,11 @@ import ContactItem from "./ContactItem"
 const Contacts = () => {
 
     const dispatch = useDispatch()
+    const userId = useSelector(state=>state.Login.userId)
     const Contact = useSelector(state=>state.Contact)
 
     React.useEffect(()=>{
-        dispatch(getAll())
+        dispatch(getAll(userId))
     },[])
 
     if(!Contact.contacts){

@@ -20,6 +20,7 @@ import {setEdit,stopEdit} from "../../Actions/EditActions"
 const ContactItem = ({contact}) => {
 
     const dispatch = useDispatch()
+    const userId = useSelector(state=>state.Login.userId)
     const Edit = useSelector(state=>state.Edit)
     const useStyles = makeStyles((theme)=>({
         titlehold:{
@@ -56,7 +57,7 @@ const ContactItem = ({contact}) => {
 
     const deleteButton = (e)=>{
         e.preventDefault()
-        dispatch(deleteById(_id))
+        dispatch(deleteById(userId,_id))
     }
     
     return (
