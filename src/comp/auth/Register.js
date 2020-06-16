@@ -16,24 +16,57 @@ const Register = () => {
     const [user,setUser] = React.useState({
         name:'',
         email:'',
-        password:'',
-        password2:''
+        password:''
     });
+    const [error, setError] = React.useState({
+        name:false,
+        email:false,
+        password:false
+    })
 
     React.useEffect(()=>{
 
     },[registerState.success])
 
-    const {name, email, password, password2} = user;
+    const {name, email, password} = user;
 
     const handleChange = (e)=>{
         setUser({...user, [e.target.name]:e.target.value})
     }
 
+    const validate = ()=>{
+        let emailTest = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+        //if the name fails exit early
+        if(!name){
+            setError({...error, name:true})
+            return true
+        }
+        //if the email fails exit early
+        if(!emailTest.test(email)){
+            setError({...error, name:false, email:true})
+            return true
+        }
+        //if the password fails exit early
+        if(password.length <6){
+            setError({...error, name:false,email:false, password:true})
+            return true
+        }else{
+            //this means everthing before hand has passed, return false, so that the registration can occur
+            setError({...error, name:false, email:false, password:false})
+            return false
+        }
+    }
+
     const Register = (e)=>{
         e.preventDefault()
         let yeet = {name:name, email:email, password:password}
-        dispatch(registerUser(yeet))
+        if(validate()){
+            //if there is a error, exit without registering the person
+            return
+        }else{
+            //register the person
+            dispatch(registerUser(yeet))
+        }
     }
 
     const classes = useForms()
@@ -59,7 +92,7 @@ const Register = () => {
                  <Alert
                  severity="success"
                  >
-                     Account added!-<Link style={{color:'#323232'}} to="/login">
+                     Account added!-<Link style={{color:'#0095f6'}} to="/login">
                          <strong>Please login</strong></Link>
                  </Alert>
 
@@ -70,6 +103,8 @@ const Register = () => {
                 <div>
                     <TextField 
                     className={classes.input}
+                    error={error.name}
+                    helperText="Please include a name"
                     variant="outlined"
                     label="Name"
                     name="name"
@@ -79,6 +114,8 @@ const Register = () => {
                 <div>
                     <TextField 
                     className={classes.input}
+                    error={error.email}
+                    helperText="Please include valid email"
                     variant="outlined"
                     label="Email"
                     name="email"
@@ -88,21 +125,13 @@ const Register = () => {
                 <div>
                     <TextField 
                     className={classes.input}
+                    error={error.password}
+                    helperText="password must be 6+ characters"
                     type="password"
                     variant="outlined"
                     label="Password"
                     name="password"
                     value={password}
-                    onChange={handleChange}/>
-                </div>
-                <div>
-                    <TextField 
-                    className={classes.input}
-                    type="password"
-                    variant="outlined"
-                    label="Confirm Password"
-                    name="password2"
-                    value={password2}
                     onChange={handleChange}/>
                 </div>
                 <Button 

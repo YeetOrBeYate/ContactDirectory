@@ -9,6 +9,7 @@ const addUser = ()=>{
 }
 
 export const registerUser = (user)=>{
+    console.log('reg function called')
     return function(dispatch){
 
         dispatch(loading())
