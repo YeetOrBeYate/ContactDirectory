@@ -12,11 +12,11 @@ import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { teal, red, blueGrey } from '@material-ui/core/colors';
+import { red, blueGrey } from '@material-ui/core/colors';
 
 
 import {deleteById} from "../../Actions/ContactActions"
-import {setEdit,stopEdit} from "../../Actions/EditActions"
+import {setEdit} from "../../Actions/EditActions"
 
 const ContactItem = ({contact}) => {
 
