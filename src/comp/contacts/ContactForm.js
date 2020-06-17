@@ -48,20 +48,40 @@ const ContactForm = () => {
 
     const validate = ()=>{
 
+        let emailTest = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+
+        if(!name){
+            setError({...error, name:true})
+            return true
+        }
+
+        if(!emailTest.test(email)){
+            setError({...error, name:false, email:true})
+            return true
+        }else{
+            setError({...error, name:false, email:false})
+            return false
+        }
+
     }
 
     const Submit = (e)=>{
         e.preventDefault()
-        if(Edit.edit){
-            //do the update request
-            dispatch(editContact(userId,Edit._id, contact))
-            //calling the clear function so that the form is ready for another edit or post request
-            Clear(e)
+        if(validate()){
+            return
         }else{
-            //do the add request
-            dispatch(addContact(userId,contact))
-            //calling the clear function so that the form is ready for another edit or post request
-            Clear(e)
+            
+            if(Edit.edit){
+                //do the update request
+                dispatch(editContact(userId,Edit._id, contact))
+                //calling the clear function so that the form is ready for another edit or post request
+                Clear(e)
+            }else{
+                //do the add request
+                dispatch(addContact(userId,contact))
+                //calling the clear function so that the form is ready for another edit or post request
+                Clear(e)
+            }
         }
     }
 
