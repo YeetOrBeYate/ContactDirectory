@@ -26,6 +26,11 @@ const ContactForm = () => {
         type:'personal'
     })
 
+    const [error, setError] = React.useState({
+        name:false,
+        email:false
+    })
+
     React.useEffect(()=>{
 
         if(Edit.edit){
@@ -39,6 +44,10 @@ const ContactForm = () => {
 
     const handleChange = (e)=>{
         setContact({...contact, [e.target.name]:e.target.value})
+    }
+
+    const validate = ()=>{
+
     }
 
     const Submit = (e)=>{
@@ -83,10 +92,24 @@ const ContactForm = () => {
             </Typography>
             <form >
                 <div>
-                    <TextField className={classes.input} variant="outlined" label="Name" name="name" value={name} onChange={handleChange}/>
+                    <TextField className={classes.input} 
+                    error={error.name}
+                    helperText="Contact must have a name"
+                    variant="outlined" 
+                    label="Name" 
+                    name="name" 
+                    value={name} 
+                    onChange={handleChange}/>
                 </div>
                 <div>
-                    <TextField className={classes.input} variant="outlined" label="Email" name="email" value={email} onChange={handleChange}/>                
+                    <TextField className={classes.input} 
+                    error={error.email}
+                    helperText="Please include valid email"
+                    variant="outlined" 
+                    label="Email" 
+                    name="email" 
+                    value={email} 
+                    onChange={handleChange}/>                
                 </div>
                 <div>
                     <TextField className={classes.input} variant="outlined" label="Phone" name="phone" value={phone} onChange={handleChange}/>                

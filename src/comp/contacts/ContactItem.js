@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import {useDispatch, useSelector}from 'react-redux'
-
-
 import { makeStyles } from '@material-ui/core/styles';
+// import {useYeet} from "../Hooks"
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,6 +14,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { teal, red, blueGrey } from '@material-ui/core/colors';
 
+
 import {deleteById} from "../../Actions/ContactActions"
 import {setEdit,stopEdit} from "../../Actions/EditActions"
 
@@ -22,7 +23,7 @@ const ContactItem = ({contact}) => {
     const dispatch = useDispatch()
     const userId = useSelector(state=>state.Login.userId)
     const Edit = useSelector(state=>state.Edit)
-    const useStyles = makeStyles((theme)=>({
+    const useContact = makeStyles((theme)=>({
         titlehold:{
             display:'flex',
             justifyContent:'space-between'
@@ -46,7 +47,8 @@ const ContactItem = ({contact}) => {
         }
     }))
 
-    const classes = useStyles()
+
+    const classes = useContact()
 
     const {_id,name,email,phone,type} = contact
 
@@ -81,7 +83,7 @@ const ContactItem = ({contact}) => {
                     variant="contained" className={classes.edit} startIcon={<EditIcon/>} disabled={Edit.edit}>Edit</Button>
                     <Button 
                     onClick={(e)=>deleteButton(e)} 
-                    variant="contained" className={classes.delete} startIcon={<DeleteIcon/>}>Delete</Button>
+                    variant="contained" className={classes.delete} startIcon={<DeleteIcon/>} disabled={Edit.edit}>Delete</Button>
                 </CardActions>
             </CardContent>
         </Card>
