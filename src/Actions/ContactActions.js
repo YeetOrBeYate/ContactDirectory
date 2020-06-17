@@ -1,4 +1,3 @@
-import axios from 'axios'
 
 import {AxiosWithAuth} from "./utils"
 
@@ -26,12 +25,6 @@ const updateContact = (id, object)=>{
     return {type:'contactEdit', payload:object, put:id}
 }
 
-//again, hard-coded for now, I'll make an custom built axios I can import to all actions that need it
-// let config={
-//     headers:{
-//         authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVkODFjNDkwNjFjNmM1NTA5ZmQzZGE1In0sImlhdCI6MTU5MTY1NzU5MCwiZXhwIjoxNTkyMDE3NTkwfQ.84_jYbm5-DwCn5Q7Jln8Ej0wD0fV9O6EIHN9uHGdUEY'
-//     }
-// }
 
 export const getAll =(userId)=>{
 
@@ -47,7 +40,7 @@ export const getAll =(userId)=>{
             })
 
             .catch(err=>{
-                console.error(err.message)
+                console.log(err)
                 dispatch(contactFailure())
             })
 
@@ -108,6 +101,7 @@ export const editContact = (userId,id, object)=>{
 
         .catch(err=>{
             console.log(err)
+            dispatch(contactFailure())
         })
     }
 

@@ -14,7 +14,7 @@ export const registerUser = (user)=>{
 
         dispatch(loading())
 
-        return axios.post('http://localhost:4000/users', user)
+        return axios.post('https://kyle-contact-keeper.herokuapp.com/users', user)
 
         .then(res=>{
             console.log(res.data)

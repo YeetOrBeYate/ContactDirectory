@@ -15,7 +15,7 @@ export const loginUser = (userInfo)=>{
         dispatch(loginLoading())
 
         
-        return axios.post(`http://localhost:4000/auth`, userInfo)
+        return axios.post(`https://kyle-contact-keeper.herokuapp.com/auth`, userInfo)
     
         .then(res=>{
             sessionStorage.setItem('token', res.data.token)
