@@ -18,9 +18,9 @@ export const ContactReducer = (state = initialState, action)=>{
         case "Contactdelete":
             return {...state, loading:false, contacts: state.contacts.filter(con=>con._id.toString() !== action.payload)}
         case "contactAdd":
-            return {...state, contacts:[action.payload, ...state.contacts]}
+            return {...state, contacts:[action.payload, ...state.contacts], loading:false, failue:false, success:true}
         case "contactEdit":
-            return {...state, contacts: state.contacts.map((con)=>{
+            return {...state, loading:false, failure:false, success:true, contacts: state.contacts.map((con)=>{
                 if(con._id.toString() === action.put){
                     con.name = action.payload.name
                     con.email = action.payload.email
