@@ -25,7 +25,6 @@ const Contacts = () => {
     if(Contact.loading){
         return(
             <div className="contactHold">
-                loading..
             </div>
         )
     }
@@ -33,7 +32,7 @@ const Contacts = () => {
     if(Contact.contacts===null || Contact.contacts.length ===0){
         return(
             <div className="contactHold">
-                <h2 style={{color:'#ff9800', textAlign:"center"}}>Go ahead and use the form to add contacts</h2>
+                
             </div>
         )
     }
