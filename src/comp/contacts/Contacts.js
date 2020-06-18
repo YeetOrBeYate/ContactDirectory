@@ -2,7 +2,7 @@ import React from 'react'
 import {useDispatch, useSelector}from 'react-redux'
 import {getAll} from "../../Actions/ContactActions"
 
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
@@ -22,17 +22,10 @@ const Contacts = () => {
         dispatch(getAll(userId))
     },[])
 
-    if(Contact.loading){
+    if(!Contact.contacts){
         return(
             <div className="contactHold">
-            </div>
-        )
-    }
-
-    if(Contact.contacts===null || Contact.contacts.length ===0){
-        return(
-            <div className="contactHold">
-                
+                <CircularProgress/>
             </div>
         )
     }
